@@ -26,7 +26,7 @@ const ProtectedRoute = ({
          try {
 
             await axiosInstance.get(
-               "/auth/me"
+               "/auth/get-admin-profile"
             );
 
             setIsAuthenticated(true);

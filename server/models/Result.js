@@ -25,7 +25,6 @@ const MarksSchema = new mongoose.Schema({
   ],
   totalMarks: {
     type: Number,
-    required: true,
   },
   percentage: Number,
   grade: String,

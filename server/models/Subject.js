@@ -11,9 +11,7 @@ const subjectSchema = new mongoose.Schema({
         unique: true,
     },
     fullMarks: {
-        type: Number,
-        required: true,
-        
+        type: Number,        
     },
     passMarks: {
         type: Number,

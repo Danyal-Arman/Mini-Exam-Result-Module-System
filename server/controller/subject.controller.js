@@ -75,8 +75,8 @@ export const ListSubjects = async (req, res) =>{
 
 export const getSubjectById = async (req, res)=>{
     try {
-        const {subjectId} = req.params;
-        const subject = await Subject.findById(subjectId)
+        const {id} = req.params;
+        const subject = await Subject.findById(id)
         
                 if(!subject){
                     return res.status(404).json({
@@ -100,10 +100,10 @@ export const getSubjectById = async (req, res)=>{
 
 export const updateSubjectById = async (req, res)=>{
     try {
-        const {subjectId} = req.params;
+        const {id} = req.params;
         const { subjectName, subjectCode, fullMarks, passMarks}= req.body;
 
-        if(!mongoose.Types.ObjectId.isValid(subjectId)){
+        if(!mongoose.Types.ObjectId.isValid(id)){
             return res.status(404).json({
                 success:false,
                 message:"Invalid Subject ID"
@@ -132,7 +132,7 @@ export const updateSubjectById = async (req, res)=>{
         }
 
         const updatedSubject = await Subject.findByIdAndUpdate(
-            subjectId,
+            id,
             {
                 subjectName,
                 subjectCode,
@@ -169,9 +169,9 @@ export const updateSubjectById = async (req, res)=>{
 
 export const deleteSubjectById = async (req, res)=>{
     try {
-        const {subjectId} = req.params;
+        const {id} = req.params;
 
-        const subject = await Subject.findByIdAndDelete(subjectId)
+        const subject = await Subject.findByIdAndDelete(id)
 
         if(!subject){
             return res.status(404).json({

@@ -102,7 +102,7 @@ export const loginAdmin = async (req, res) => {
           email: newUser.email,
         },
       })
-    }
+    } 
 
     const verify = await bcrypt.compare(password, user.password);
 
@@ -123,7 +123,7 @@ export const loginAdmin = async (req, res) => {
       })
       .json({
         success: true,
-        message: `Welcome back ${user.username}`,
+        message: `Welcome back`,
         user: {
           _id: user._id,
           email: user.email,
@@ -163,7 +163,8 @@ export const logoutUser = async (req, res) => {
 
 export const getAdminProfile = async (req, res) => {
    try {
-      const adminId = req.admin._id;
+      const adminId = req.admin;
+      console.log("Admin ID from token:", adminId);
       const admin = await Admin.findById(adminId);
       if (!admin) {
          return res.status(404).json({
@@ -179,7 +180,7 @@ export const getAdminProfile = async (req, res) => {
       console.error("Get admin profile error:", error);
       return res.status(500).json({
          success: false,
-         message: "Internal server error",
+         message: "Internal server error", 
       });
    }
 };

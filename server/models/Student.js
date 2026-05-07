@@ -13,7 +13,6 @@ const studentSchema = new mongoose.Schema({
    },
    phone:{
     type: String,
-    required: true,
     match: [/^[6-9]\d{9}$/, "Please enter a valid phone number"]
    },
     rollNumber:{

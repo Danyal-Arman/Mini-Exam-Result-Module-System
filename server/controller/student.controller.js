@@ -1,5 +1,5 @@
 import { Student } from "../models/Student.js";
-
+import mongoose from "mongoose"
 
 export const createStudent = async(req, res)=>{
     try {
@@ -60,8 +60,8 @@ export const listStudents = async (req, res) =>{
 
 export const getStudentById = async (req, res)=>{
     try {
-        const {studentId} = req.params;
-        const student = await Student.findById(studentId)
+        const {id} = req.params;
+        const student = await Student.findById(id)
         
                 if(!student){
                     return res.status(404).json({
@@ -85,10 +85,10 @@ export const getStudentById = async (req, res)=>{
 
 export const updateStudentById = async (req, res)=>{
     try {
-        const {studentId} = req.params;
+        const {id} = req.params;
         const { name, rollNumber, className, email, phone, section}= req.body;
 
-        if(!mongoose.Types.ObjectId.isValid(studentId)){
+        if(!mongoose.Types.ObjectId.isValid(id)){
             return res.status(404).json({
                 success:false,
                 message:"Invalid student ID"
@@ -96,7 +96,7 @@ export const updateStudentById = async (req, res)=>{
         }
 
         const updatedstudent = await Student.findByIdAndUpdate(
-            studentId,
+            id,
             {
                 name,
                 rollNumber,
@@ -135,9 +135,9 @@ export const updateStudentById = async (req, res)=>{
 
 export const deleteStudentById = async (req, res)=>{
     try {
-        const {studentId} = req.params;
+        const {id} = req.params;
 
-        const student = await Student.findByIdAndDelete(studentId)
+        const student = await Student.findByIdAndDelete(id)
 
         if(!student){
             return res.status(404).json({
